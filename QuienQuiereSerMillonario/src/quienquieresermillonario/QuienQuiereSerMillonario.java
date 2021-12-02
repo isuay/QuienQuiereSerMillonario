@@ -28,21 +28,29 @@ public class QuienQuiereSerMillonario {
         String[] respuestasC = new String[niveles];
         String[] respuestasD = new String[niveles];
 
-        System.out.println("Bienvenido a 'Quién quiere ser millonario'");
+        int rnd = (int)(0 + Math.random() * 5);
+        System.out.println(rnd);
+        
+        /*System.out.println("****Quién quiere ser millonario****");
+        System.out.print("Introduce tu nombre: ");
+        String nombre = in.nextLine();
+        System.out.println("Bienvenid@ " + nombre);
         System.out.println("Pulsa intro para empezar");
-        String intro = in.next();
+        String intro = in.next();*/
+        
+        
         /*for (int i = 0; i < niveles; i++) {
             preguntas[i] = 
         }*/
         
         // Generar las preguntas
-        Preguntas.generarPreguntas();
-        Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
+        //Preguntas.generarBancoPreguntas();
+        //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
         
         // MOSTRAR PREGUNTAS COMO PRUEBA, PARA VER SI FUNCIONA
-        Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
+        //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
         
-        // Recorrer todas las preguntas A - Z. Para cada pregunta ->
+        // Recorrer todas los niveles 1 - 12. Para cada nivel ->
         
             // Preguntar al usuario
             // Usuario responde
@@ -51,7 +59,7 @@ public class QuienQuiereSerMillonario {
             // Comprobar si ha ganado o no
         
     }
-
+    
     
     
 }
