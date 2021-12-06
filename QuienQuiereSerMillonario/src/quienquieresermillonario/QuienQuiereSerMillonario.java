@@ -28,16 +28,18 @@ public class QuienQuiereSerMillonario {
         String[] respuestasC = new String[niveles];
         String[] respuestasD = new String[niveles];
 
-        int rnd = (int)(0 + Math.random() * 5);
-        System.out.println(rnd);
         
-        /*System.out.println("****Quién quiere ser millonario****");
+        System.out.println("****Quién quiere ser millonario****");
         System.out.print("Introduce tu nombre: ");
         String nombre = in.nextLine();
         System.out.println("Bienvenid@ " + nombre);
         System.out.println("Pulsa intro para empezar");
-        String intro = in.next();*/
+        in.nextLine();
         
+        Preguntas.generarBancoPreguntas(Preguntas.preguntas);
+        Preguntas.generarPreguntasPartida(Preguntas.preguntas, Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
+        //Preguntas.generarRespuestasPartida(Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
+        //Preguntas.comprobarRespuesta();
         
         /*for (int i = 0; i < niveles; i++) {
             preguntas[i] = 

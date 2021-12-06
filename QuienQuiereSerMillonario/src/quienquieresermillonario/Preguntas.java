@@ -23,48 +23,102 @@ public class Preguntas {
     public static String[][] respuestaC = new String[QuienQuiereSerMillonario.niveles][5];
     public static String[][] respuestaD = new String[QuienQuiereSerMillonario.niveles][5];
     public static String[][] correcta = new String[QuienQuiereSerMillonario.niveles][5];
+    public static int rnd = (int) (0 + Math.random() * 5);
 
     // Guarda en preguntas y respuestas las que se van a jugar en una partida
     // Aleatoriamente una de cada nivel
-    
     //Comprueba si la respuesta introducida es la correcta
-    public static boolean comprobarRespuesta() {
+    public static boolean comprobarRespuesta(int nivel) {
 
-        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
-            
-            for (int j = 0; j < 5; j++) {
+        String respCorrecta = correcta[nivel][rnd];
 
-                if (pedirRespuesta() == correcta[i][j]) {
+        if (pedirRespuesta().equalsIgnoreCase(respCorrecta)) {
 
-                    return true;
-                    
-                } else {
-                    
-                    break;
-                }
+            return true;
+
+        } else {
+
+            return false;
+
+        }
+        /* // Vector donde guardaremos las posiciones encontradas
+        int[] vpos = new int[MAX];
+        // Nº de posiciones encontradas
+        int npos = 0;
+        
+        // Recorremos 'vector' buscando el texto 'buscar' en sus posiciones
+        // Guardaremos en 'vpos' las posiciones que contengan 'buscar'
+        for (int i = 0; i < contar; i++) {
+            if (vector[i].toUpperCase().contains(buscar.toUpperCase())) {
+                vpos[npos] = i;
+                npos++;
             }
         }
         
-        return false;
+        // Reducimod el tamaño de 'vpos' al mínimo y lo devolvemos
+        vpos = Arrays.copyOf(vpos, npos);
+        
+        return vpos; */
     }
 
     // Generamos las preguntas (aleatorias) y respuestas de cada nivel
     /*public static void generarPreguntasPartida(String[] preguntas, String[] respuestaA, String[] respuestaB, String[] respuestaC, String[] respuestaD) {
 
     }*/
-    
-    public static void generarPreguntasPartida() {
+    public static void generarPreguntasPartida(String[][] pregunta, String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
 
-        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
-            for (int j = 0; j < 5; j++) {
-                int rnd = (int)(0 + Math.random() * 5);
-                System.out.println(preguntas[i][rnd]);
+        boolean respuestaCorrecta = true;
+
+            for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
+                for (int j = 0; j < 1; j++) {
+
+                    System.out.println((i + 1) + ". " + preguntas[i][rnd]);
+                    System.out.println("a. " + respuestaA[i][rnd] + "\t" + "b. " + respuestaB[i][rnd]
+                            + "\n" + "c. " + respuestaC[i][rnd] + "\t" + "d. " + respuestaD[i][rnd] + "\n");
+                }
+                if (comprobarRespuesta(i) == true) {
+                    System.out.println("¡¡Respuesta correcta!!\n");
+                } else {
+                    respuestaCorrecta = false;
+                    System.out.println("Respuesta incorrecta :(\n");
+                    break;
+                }
             }
-        }
-        
     }
 
-    
+    /*public static void main(String[] args) {
+        int[][] matrizNumeros = new int[5][5];
+        inicializar(matrizNumeros);
+        visualizar(matrizNumeros);
+    }
+ 
+    static void inicializar(int[][] matriz){
+         Random r = new Random();
+        for(int i=0;i<matriz.length;i++){
+            for(int j=0;j<matriz[i].length;j++){
+                matriz[i][j] = r.nextInt(25) + 1; 
+            }
+        }
+    }
+     
+    static void visualizar(int[][] matriz){
+        for(int i=0;i<matriz.length;i++){
+            for(int j=0;j<matriz[i].length;j++){
+                System.out.print(matriz[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }*/
+
+ /*public static void generarRespuestasPartida(String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
+        
+        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
+            for (int j = rnd; j < 1; j++) {
+                System.out.println("a. " + respuestaA[i][j] + "\t" + "b. " + respuestaB[i][j] +
+                        "\n" + "c. " + respuestaC[i][j] + "\t" + "d. " + respuestaD[i][j]);
+            }
+        }
+    }*/
     // Guardamos la respuesta del usuario
     public static String pedirRespuesta() {
 
@@ -72,10 +126,10 @@ public class Preguntas {
 
         String resp = in.next();
 
-        return resp;
+        return resp.toLowerCase();
     }
 
-    public static void generarBancoPreguntas() {
+    public static void generarBancoPreguntas(String[][] pregunta) {
 
         //Nivel 1
         preguntas[0][0] = "¿Cuál es la capital de Portugal?";
@@ -263,114 +317,114 @@ public class Preguntas {
         correcta[4][4] = "b";
 
         //Nivel 6
-        preguntas[5][0] = "...";
+        preguntas[5][0] = "En 1935, Federico García Lorca publicó un libro de seis poemas escritos en…";
         preguntas[5][1] = "¿Cuántos gramos de sal (cloruro de sodio) hay en un litro de agua de mar típica?";
         preguntas[5][2] = "¿Cuál de estas ciudades no está en la costa oeste de EEUU?";
         preguntas[5][3] = "Johann Sebastian Bach es un compositor...";
-        preguntas[5][4] = "...";
+        preguntas[5][4] = "Uno de estos animales no tiene dientes.";
 
-        respuestaA[5][0] = "...";
+        respuestaA[5][0] = "Francés";
         respuestaA[5][1] = "Ninguno";
         respuestaA[5][2] = "Malibú";
         respuestaA[5][3] = "Renacentista";
-        respuestaA[5][4] = "...";
+        respuestaA[5][4] = "El pingüino";
 
-        respuestaB[5][0] = "...";
+        respuestaB[5][0] = "Catalán";
         respuestaB[5][1] = "Tres";
         respuestaB[5][2] = "Sacramento";
         respuestaB[5][3] = "Barroco";
-        respuestaB[5][4] = "...";
+        respuestaB[5][4] = "El delfín";
 
-        respuestaC[5][0] = "...";
+        respuestaC[5][0] = "Inglés";
         respuestaC[5][1] = "Uno";
         respuestaC[5][2] = "Denver";
         respuestaC[5][3] = "Clásico";
-        respuestaC[5][4] = "...";
+        respuestaC[5][4] = "La serpiente";
 
-        respuestaD[5][0] = "...";
+        respuestaD[5][0] = "Gallego";
         respuestaD[5][1] = "Dos";
         respuestaD[5][2] = "San Francisco";
         respuestaD[5][3] = "Romántico";
-        respuestaD[5][4] = "...";
+        respuestaD[5][4] = "La orca";
 
-        correcta[5][0] = "";
+        correcta[5][0] = "d";
         correcta[5][1] = "a";
         correcta[5][2] = "c";
         correcta[5][3] = "b";
-        correcta[5][4] = "";
+        correcta[5][4] = "a";
 
         //Nivel 7
         preguntas[6][0] = "¿De qué nacionalidad fue el escultor Alberto Giacometti?";
         preguntas[6][1] = "Las flores de Bach son un remedio para…";
         preguntas[6][2] = "¿Qué rey montado a caballo puedes observar en la Plaza Mayor de Madrid?";
         preguntas[6][3] = "¿Qué es la anosmia?";
-        preguntas[6][4] = "...";
+        preguntas[6][4] = "¿De qué murió el compositor Chopin?";
 
         respuestaA[6][0] = "Suizo";
         respuestaA[6][1] = "Las arrugas";
         respuestaA[6][2] = "Felipe III";
         respuestaA[6][3] = "Pérdida de orina";
-        respuestaA[6][4] = "...";
+        respuestaA[6][4] = "De un ataque al corazón";
 
         respuestaB[6][0] = "Francés";
         respuestaB[6][1] = "Las manchas solares";
         respuestaB[6][2] = "Carlos II";
         respuestaB[6][3] = "Pérdida del olfato";
-        respuestaB[6][4] = "...";
+        respuestaB[6][4] = "De insuficiencia renal aguda";
 
         respuestaC[6][0] = "Belga";
         respuestaC[6][1] = "Los problemas emocionales";
         respuestaC[6][2] = "Fernando VII";
         respuestaC[6][3] = "Pérdida del apetito";
-        respuestaC[6][4] = "...";
+        respuestaC[6][4] = "De un cáncer estomacal";
 
         respuestaD[6][0] = "Italiano";
         respuestaD[6][1] = "Las ojeras";
         respuestaD[6][2] = "Alfonso XIII";
         respuestaD[6][3] = "Pérdida de la libido";
-        respuestaD[6][4] = "...";
+        respuestaD[6][4] = "De tuberculosis";
 
         correcta[6][0] = "a";
         correcta[6][1] = "c";
         correcta[6][2] = "a";
         correcta[6][3] = "b";
-        correcta[6][4] = "";
+        correcta[6][4] = "d";
 
         //Nivel 8
         preguntas[7][0] = "'Future Nostalgia' que contiene el single 'Don't Start Now' es el segundo álbum de estudio ¿de qué cantante inglés?";
         preguntas[7][1] = "No es una postura de yoga";
         preguntas[7][2] = "¿Quién fue el último monarca que vivió de forma estable en el Palacio Real de Madrid?";
-        preguntas[7][3] = "...";
+        preguntas[7][3] = "¿Cuál de los siguientes hombres no tiene un elemento químico llamado como él?";
         preguntas[7][4] = "¿En qué película pudiste emocionarte escuchando la célebre frase:’¡Oh, capitán, mi capitán!’?";
 
         respuestaA[7][0] = "Madonna";
         respuestaA[7][1] = "El guerrero";
         respuestaA[7][2] = "Alfonso XII";
-        respuestaA[7][3] = "...";
+        respuestaA[7][3] = "Isaac Newton";
         respuestaA[7][4] = "La tormenta perfecta";
 
         respuestaB[7][0] = "Dua Lipa";
         respuestaB[7][1] = "El niño";
         respuestaB[7][2] = "Alfonso XIII";
-        respuestaB[7][3] = "...";
+        respuestaB[7][3] = "Albert Einstein";
         respuestaB[7][4] = "Capitán América";
 
         respuestaC[7][0] = "Adele";
         respuestaC[7][1] = "La bailarina";
         respuestaC[7][2] = "Juan Carlos I";
-        respuestaC[7][3] = "...";
+        respuestaC[7][3] = "Niels Bohr";
         respuestaC[7][4] = "El club de los poetas muertos";
 
         respuestaD[7][0] = "Marilyn Manson";
         respuestaD[7][1] = "La abuela";
         respuestaD[7][2] = "Carlos III";
-        respuestaD[7][3] = "...";
+        respuestaD[7][3] = "Enrico Fermi";
         respuestaD[7][4] = "Titanic";
 
         correcta[7][0] = "b";
         correcta[7][1] = "d";
         correcta[7][2] = "b";
-        correcta[7][3] = "";
+        correcta[7][3] = "a";
         correcta[7][4] = "c";
 
         //Nivel 9
@@ -378,148 +432,148 @@ public class Preguntas {
         preguntas[8][1] = "¿Qué pieza del motor de un coche transforma el movimiento vertical de los pistones en circular?";
         preguntas[8][2] = "Wimbledon 2017 fue ganado por la 14ta semilla que sorprendentemente derrotó a Venus Williams en la final. ¿Quien es ella?";
         preguntas[8][3] = "No es una película de David Fincher:";
-        preguntas[8][4] = "...";
+        preguntas[8][4] = "En la tabla periódica de los elementos, ¿hay cuatro elementos diferentes cuyos nombres se basan en…?";
 
         respuestaA[8][0] = "Corea del Norte";
         respuestaA[8][1] = "El alternador";
         respuestaA[8][2] = "Garbiñe Muguruza";
         respuestaA[8][3] = "El club de la lucha";
-        respuestaA[8][4] = "...";
+        respuestaA[8][4] = "En el gato mascota de Antoine Lavoisier";
 
         respuestaB[8][0] = "Corea del Sur";
         respuestaB[8][1] = "El cárter";
         respuestaB[8][2] = "María Sharápova";
         respuestaB[8][3] = "Perdida";
-        respuestaB[8][4] = "...";
+        respuestaB[8][4] = "En una aldea minera sueca";
 
         respuestaC[8][0] = "Japón";
         respuestaC[8][1] = "El cigüeñal";
         respuestaC[8][2] = "Serena Williams";
         respuestaC[8][3] = "Seven";
-        respuestaC[8][4] = "...";
+        respuestaC[8][4] = "En la luna de Neptuno";
 
         respuestaD[8][0] = "China";
         respuestaD[8][1] = "La culata";
         respuestaD[8][2] = "Petra Kvitová";
         respuestaD[8][3] = "El indomable Will Hunting";
-        respuestaD[8][4] = "...";
+        respuestaD[8][4] = "En el nombre de soltera de Marie Curie";
 
         correcta[8][0] = "a";
         correcta[8][1] = "c";
         correcta[8][2] = "a";
         correcta[8][3] = "d";
-        correcta[8][4] = "";
+        correcta[8][4] = "b";
 
         //Nivel 10
         preguntas[9][0] = "¿Qué juego deportivo inventó James Naismith en 1891?";
         preguntas[9][1] = "¿Qué artista pintó 'The Water-Lily Pond' en 1899?";
         preguntas[9][2] = "Posición de ballet en la que se coloca el peso en una pierna y la otra está estirada hacia atrás.";
         preguntas[9][3] = "¿Qué artista es famoso por pintar bailarinas?";
-        preguntas[9][4] = "...";
+        preguntas[9][4] = "Existen tres ciudades europeas que preservan manuscritos originales de la civilización maya. ¿Cuál de estas ciudades no los tiene?";
 
         respuestaA[9][0] = "Fútbol";
         respuestaA[9][1] = "Claude Monet";
         respuestaA[9][2] = "Adagio";
         respuestaA[9][3] = "Paul Cézanne";
-        respuestaA[9][4] = "...";
+        respuestaA[9][4] = "Madrid";
 
         respuestaB[9][0] = "Baloncesto";
         respuestaB[9][1] = "Vincent van Gogh";
         respuestaB[9][2] = "Arabesque";
         respuestaB[9][3] = "Paul Gauguin";
-        respuestaB[9][4] = "...";
+        respuestaB[9][4] = "Dresden";
 
         respuestaC[9][0] = "Balonmano";
         respuestaC[9][1] = "Pablo Picasso";
         respuestaC[9][2] = "Ballonné Pas";
         respuestaC[9][3] = "Edgar Degas";
-        respuestaC[9][4] = "...";
+        respuestaC[9][4] = "París";
 
         respuestaD[9][0] = "Tenis";
         respuestaD[9][1] = "Salvador Dalí";
         respuestaD[9][2] = "Battu";
         respuestaD[9][3] = "Claude Monet";
-        respuestaD[9][4] = "...";
+        respuestaD[9][4] = "Roma";
 
         correcta[9][0] = "b";
         correcta[9][1] = "a";
         correcta[9][2] = "b";
         correcta[9][3] = "c";
-        correcta[9][4] = "";
+        correcta[9][4] = "d";
 
         //Nivel 11
         preguntas[10][0] = "¿Junto a qué río se levanta el Taj Mahal?";
         preguntas[10][1] = "El canadiense Connor McDavid es una estrella en ascenso en qué deporte.";
         preguntas[10][2] = "¿Qué famoso vino italiano procede de la Toscana?";
-        preguntas[10][3] = "...";
-        preguntas[10][4] = "...";
+        preguntas[10][3] = "¿Cuál de estas películas de los 80 se estrenó primero?";
+        preguntas[10][4] = "¿Cuál de estos personajes jamás apareció en la revista Time como 'Hombre del Año'?";
 
         respuestaA[10][0] = "Indo";
         respuestaA[10][1] = "Hockey sobre hielo";
         respuestaA[10][2] = "Prosecco";
-        respuestaA[10][3] = "...";
-        respuestaA[10][4] = "...";
+        respuestaA[10][3] = "Cocodrilo Dundee";
+        respuestaA[10][4] = "Adolf Hitler";
 
         respuestaB[10][0] = "Ganges";
         respuestaB[10][1] = "Balonmano";
         respuestaB[10][2] = "Vinho verde";
-        respuestaB[10][3] = "...";
-        respuestaB[10][4] = "...";
+        respuestaB[10][3] = "Entre pillos anda el juego";
+        respuestaB[10][4] = "Ayatolá Jomeiní";
 
         respuestaC[10][0] = "Yamuna";
         respuestaC[10][1] = "Voleyball";
         respuestaC[10][2] = "Chianti";
-        respuestaC[10][3] = "...";
-        respuestaC[10][4] = "...";
+        respuestaC[10][3] = "Arma letal";
+        respuestaC[10][4] = "Joseph Stalin";
 
         respuestaD[10][0] = "Meghna";
         respuestaD[10][1] = "Baloncesto";
         respuestaD[10][2] = "Chardonnay";
-        respuestaD[10][3] = "...";
-        respuestaD[10][4] = "...";
+        respuestaD[10][3] = "Regreso al futuro";
+        respuestaD[10][4] = "Mao Zedong";
 
         correcta[10][0] = "c";
         correcta[10][1] = "a";
         correcta[10][2] = "c";
-        correcta[10][3] = "";
-        correcta[10][4] = "";
+        correcta[10][3] = "b";
+        correcta[10][4] = "d";
 
         //Nivel 12
         preguntas[11][0] = "¿Cuántos girasoles había en la tercera versión de Van Gogh de la pintura 'Girasoles'?";
         preguntas[11][1] = "¿Cuántas latas puedes contar en la obra ‘Latas de sopa Campbell’, de Andy Warhol?";
         preguntas[11][2] = "¿Cuántos poemas acompañan a la ‘canción desesperada’ que escribió Neruda?";
-        preguntas[11][3] = "...";
-        preguntas[11][4] = "...";
+        preguntas[11][3] = "¿En la corte de qué rey pasó Leonardo Da Vinci los dos últimos años de su vida?";
+        preguntas[11][4] = "¿Quién fue el primer hombre en viajar dos veces al espacio?";
 
         respuestaA[11][0] = "10";
         respuestaA[11][1] = "8";
         respuestaA[11][2] = "Cinco";
-        respuestaA[11][3] = "...";
-        respuestaA[11][4] = "...";
+        respuestaA[11][3] = "Francisco I";
+        respuestaA[11][4] = "Vladimir Titov";
 
         respuestaB[11][0] = "12";
         respuestaB[11][1] = "16";
         respuestaB[11][2] = "Diez";
-        respuestaB[11][3] = "...";
-        respuestaB[11][4] = "...";
+        respuestaB[11][3] = "Enrique IV";
+        respuestaB[11][4] = "Michael Collins";
 
         respuestaC[11][0] = "11";
         respuestaC[11][1] = "32";
         respuestaC[11][2] = "Quince";
-        respuestaC[11][3] = "...";
-        respuestaC[11][4] = "...";
+        respuestaC[11][3] = "Carlos III";
+        respuestaC[11][4] = "Yuri Gagarin";
 
         respuestaD[11][0] = "13";
         respuestaD[11][1] = "64";
         respuestaD[11][2] = "Veinte";
-        respuestaD[11][3] = "...";
-        respuestaD[11][4] = "...";
+        respuestaD[11][3] = "Luis XII";
+        respuestaD[11][4] = "Gus Grissom";
 
         correcta[11][0] = "b";
         correcta[11][1] = "c";
         correcta[11][2] = "d";
-        correcta[11][3] = "";
-        correcta[11][4] = "";
+        correcta[11][3] = "a";
+        correcta[11][4] = "d";
 
     }
 
