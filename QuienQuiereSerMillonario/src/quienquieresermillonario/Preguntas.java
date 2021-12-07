@@ -23,14 +23,13 @@ public class Preguntas {
     public static String[][] respuestaC = new String[QuienQuiereSerMillonario.niveles][5];
     public static String[][] respuestaD = new String[QuienQuiereSerMillonario.niveles][5];
     public static String[][] correcta = new String[QuienQuiereSerMillonario.niveles][5];
-    public static int rnd = (int) (0 + Math.random() * 5);
 
     // Guarda en preguntas y respuestas las que se van a jugar en una partida
     // Aleatoriamente una de cada nivel
     //Comprueba si la respuesta introducida es la correcta
-    public static boolean comprobarRespuesta(int nivel) {
+    public static boolean comprobarRespuesta(int nivel, int numPregunta) {
 
-        String respCorrecta = correcta[nivel][rnd];
+        String respCorrecta = correcta[nivel][numPregunta];
 
         if (pedirRespuesta().equalsIgnoreCase(respCorrecta)) {
 
@@ -67,23 +66,33 @@ public class Preguntas {
     }*/
     public static void generarPreguntasPartida(String[][] pregunta, String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
 
-        boolean respuestaCorrecta = true;
+        int rnd = (int) (0 + Math.random() * 5);
 
-            for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
-                for (int j = 0; j < 1; j++) {
+        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
+            for (int j = 0; j < 1; j++) {
 
-                    System.out.println((i + 1) + ". " + preguntas[i][rnd]);
-                    System.out.println("a. " + respuestaA[i][rnd] + "\t" + "b. " + respuestaB[i][rnd]
-                            + "\n" + "c. " + respuestaC[i][rnd] + "\t" + "d. " + respuestaD[i][rnd] + "\n");
-                }
-                if (comprobarRespuesta(i) == true) {
-                    System.out.println("¡¡Respuesta correcta!!\n");
-                } else {
-                    respuestaCorrecta = false;
-                    System.out.println("Respuesta incorrecta :(\n");
-                    break;
-                }
+                System.out.println((i + 1) + ". " + preguntas[i][rnd]);
+                System.out.println("a. " + respuestaA[i][rnd] + "\t" + "b. " + respuestaB[i][rnd]
+                        + "\n" + "c. " + respuestaC[i][rnd] + "\t" + "d. " + respuestaD[i][rnd] + "\n");
             }
+
+            boolean repuesta = comprobarRespuesta(i, rnd);
+
+            if (repuesta == true && i != 11) {
+                System.out.println("¡¡Respuesta correcta!!");
+                System.out.print("Dinero acumulado: ");
+                dineroGanado(i + 1);
+            } else if (repuesta == true && i == 11) {
+                System.out.println("!!Has ganado el concurso¡¡");
+                System.out.print("Dinero final: ");
+                dineroGanado(i+1);
+            } else {
+                System.out.println("Respuesta incorrecta :(");
+                System.out.print("Dinero final: ");
+                dineroSeguro(i);
+                break;
+            }
+        }
     }
 
     /*public static void main(String[] args) {
@@ -127,6 +136,81 @@ public class Preguntas {
         String resp = in.next();
 
         return resp.toLowerCase();
+    }
+
+    public static void dineroGanado(int nivel) {
+
+        int dinero;
+
+        switch (nivel) {
+
+            case 1:
+                dinero = 100;
+                System.out.println(dinero + "€\n");
+                break;
+            case 2:
+                dinero = 500;
+                System.out.println(dinero + "€\n");
+                break;
+            case 3:
+                dinero = 1000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 4:
+                dinero = 1500;
+                System.out.println(dinero + "€\n");
+                break;
+            case 5:
+                dinero = 2500;
+                System.out.println(dinero + "€\n");
+                break;
+            case 6:
+                dinero = 5000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 7:
+                dinero = 10000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 8:
+                dinero = 20000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 9:
+                dinero = 50000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 10:
+                dinero = 100000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 11:
+                dinero = 300000;
+                System.out.println(dinero + "€\n");
+                break;
+            case 12:
+                dinero = 1000000;
+                System.out.println(dinero + "€\n");
+                break;
+            default:
+                dinero = 0;
+                System.out.println(dinero + "€\n");
+                break;
+        }
+    }
+
+    public static void dineroSeguro(int nivel) {
+
+        int zonaSegura1 = 5;
+        int zonaSegura2 = 10;
+
+        if (nivel + 1 >= 5 && nivel + 1 < 10) {
+            dineroGanado(zonaSegura1);
+        } else if (nivel + 1 >= 10 && nivel + 1 < 12) {
+            dineroGanado(zonaSegura2);
+        } else {
+            dineroGanado(0);
+        }
     }
 
     public static void generarBancoPreguntas(String[][] pregunta) {
@@ -213,13 +297,13 @@ public class Preguntas {
         preguntas[2][4] = "¿Cómo sigue la frase de Bruce Lee: ‘Be water…’?";
 
         respuestaA[2][0] = "Bruno Mars";
-        respuestaA[2][1] = "Vivien Leigh";
+        respuestaA[2][1] = "Julie Andrews";
         respuestaA[2][2] = "Francia";
-        respuestaA[2][3] = "La cabeza";
+        respuestaA[2][3] = "Un arroz con bacalao";
         respuestaA[2][4] = "My love";
 
         respuestaB[2][0] = "Jason Derulo";
-        respuestaB[2][1] = "Julie Andrews";
+        respuestaB[2][1] = "Vivien Leigh";
         respuestaB[2][2] = "Italia";
         respuestaB[2][3] = "Unos churros";
         respuestaB[2][4] = "My son";
@@ -233,13 +317,13 @@ public class Preguntas {
         respuestaD[2][0] = "Drake";
         respuestaD[2][1] = "Judy Garland";
         respuestaD[2][2] = "Alemania";
-        respuestaD[2][3] = "Un arroz con bacalao";
+        respuestaD[2][3] = "La cabeza";
         respuestaD[2][4] = "My boss";
 
         correcta[2][0] = "c";
         correcta[2][1] = "b";
         correcta[2][2] = "a";
-        correcta[2][3] = "d";
+        correcta[2][3] = "a";
         correcta[2][4] = "c";
 
         //Nivel 4
@@ -274,10 +358,10 @@ public class Preguntas {
         respuestaD[3][4] = "Un cuadro guarda su vejez";
 
         correcta[3][0] = "a";
-        correcta[2][1] = "a";
-        correcta[2][2] = "b";
-        correcta[2][3] = "a";
-        correcta[2][4] = "b";
+        correcta[3][1] = "a";
+        correcta[3][2] = "b";
+        correcta[3][3] = "a";
+        correcta[3][4] = "b";
 
         //Nivel 5
         preguntas[4][0] = "Al último clasificado del torneo Seis Naciones de rugby se le entrega…";

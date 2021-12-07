@@ -38,6 +38,8 @@ public class QuienQuiereSerMillonario {
         
         Preguntas.generarBancoPreguntas(Preguntas.preguntas);
         Preguntas.generarPreguntasPartida(Preguntas.preguntas, Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
+        
+        System.out.println("¡¡Gracias por jugar!! Hasta la próxima :)");
         //Preguntas.generarRespuestasPartida(Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
         //Preguntas.comprobarRespuesta();
         
