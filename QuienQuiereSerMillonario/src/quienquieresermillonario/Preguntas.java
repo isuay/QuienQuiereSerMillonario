@@ -26,7 +26,52 @@ public class Preguntas {
 
     // Guarda en preguntas y respuestas las que se van a jugar en una partida
     // Aleatoriamente una de cada nivel
-    //Comprueba si la respuesta introducida es la correcta
+    // Comprueba si la respuesta introducida es la correcta
+    // Generamos las preguntas (aleatorias) y respuestas de cada nivel
+
+    // Generamos las preguntas que van a aparecer al usuario
+    public static void generarPreguntasPartida(String[][] pregunta, String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
+
+        //Creamos un número random para que no nos salga siempre la misma pregunta en cada nivel en cada partida
+        int rnd = (int) (0 + Math.random() * 5);
+
+        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
+            for (int j = 0; j < 1; j++) {
+
+                System.out.println((i + 1) + ". " + preguntas[i][rnd]);
+                System.out.println("a. " + respuestaA[i][rnd] + "\t" + "b. " + respuestaB[i][rnd]
+                        + "\n" + "c. " + respuestaC[i][rnd] + "\t" + "d. " + respuestaD[i][rnd] + "\n");
+            }
+
+            boolean repuesta = comprobarRespuesta(i, rnd);
+
+            if (repuesta == true && i != 11) {
+                System.out.println("¡¡Respuesta correcta!!");
+                System.out.print("Dinero acumulado: ");
+                Dinero.dineroGanado(i + 1);
+            } else if (repuesta == true && i == 11) {
+                System.out.println("!!Has ganado el concurso¡¡");
+                System.out.print("Dinero final: ");
+                Dinero.dineroGanado(i + 1);
+            } else {
+                System.out.println("Respuesta incorrecta :(");
+                System.out.print("Dinero final: ");
+                Dinero.dineroSeguro(i);
+                break;
+            }
+        }
+    }
+
+    // Guardamos la respuesta del usuario
+    public static String pedirRespuesta() {
+
+        Scanner in = new Scanner(System.in);
+
+        String resp = in.next();
+
+        return resp.toLowerCase();
+    }
+
     public static boolean comprobarRespuesta(int nivel, int numPregunta) {
 
         String respCorrecta = correcta[nivel][numPregunta];
@@ -60,41 +105,6 @@ public class Preguntas {
         return vpos; */
     }
 
-    // Generamos las preguntas (aleatorias) y respuestas de cada nivel
-    /*public static void generarPreguntasPartida(String[] preguntas, String[] respuestaA, String[] respuestaB, String[] respuestaC, String[] respuestaD) {
-
-    }*/
-    public static void generarPreguntasPartida(String[][] pregunta, String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
-
-        int rnd = (int) (0 + Math.random() * 5);
-
-        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
-            for (int j = 0; j < 1; j++) {
-
-                System.out.println((i + 1) + ". " + preguntas[i][rnd]);
-                System.out.println("a. " + respuestaA[i][rnd] + "\t" + "b. " + respuestaB[i][rnd]
-                        + "\n" + "c. " + respuestaC[i][rnd] + "\t" + "d. " + respuestaD[i][rnd] + "\n");
-            }
-
-            boolean repuesta = comprobarRespuesta(i, rnd);
-
-            if (repuesta == true && i != 11) {
-                System.out.println("¡¡Respuesta correcta!!");
-                System.out.print("Dinero acumulado: ");
-                dineroGanado(i + 1);
-            } else if (repuesta == true && i == 11) {
-                System.out.println("!!Has ganado el concurso¡¡");
-                System.out.print("Dinero final: ");
-                dineroGanado(i+1);
-            } else {
-                System.out.println("Respuesta incorrecta :(");
-                System.out.print("Dinero final: ");
-                dineroSeguro(i);
-                break;
-            }
-        }
-    }
-
     /*public static void main(String[] args) {
         int[][] matrizNumeros = new int[5][5];
         inicializar(matrizNumeros);
@@ -118,101 +128,6 @@ public class Preguntas {
             System.out.println();
         }
     }*/
-
- /*public static void generarRespuestasPartida(String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
-        
-        for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {
-            for (int j = rnd; j < 1; j++) {
-                System.out.println("a. " + respuestaA[i][j] + "\t" + "b. " + respuestaB[i][j] +
-                        "\n" + "c. " + respuestaC[i][j] + "\t" + "d. " + respuestaD[i][j]);
-            }
-        }
-    }*/
-    // Guardamos la respuesta del usuario
-    public static String pedirRespuesta() {
-
-        Scanner in = new Scanner(System.in);
-
-        String resp = in.next();
-
-        return resp.toLowerCase();
-    }
-
-    public static void dineroGanado(int nivel) {
-
-        int dinero;
-
-        switch (nivel) {
-
-            case 1:
-                dinero = 100;
-                System.out.println(dinero + "€\n");
-                break;
-            case 2:
-                dinero = 500;
-                System.out.println(dinero + "€\n");
-                break;
-            case 3:
-                dinero = 1000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 4:
-                dinero = 1500;
-                System.out.println(dinero + "€\n");
-                break;
-            case 5:
-                dinero = 2500;
-                System.out.println(dinero + "€\n");
-                break;
-            case 6:
-                dinero = 5000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 7:
-                dinero = 10000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 8:
-                dinero = 20000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 9:
-                dinero = 50000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 10:
-                dinero = 100000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 11:
-                dinero = 300000;
-                System.out.println(dinero + "€\n");
-                break;
-            case 12:
-                dinero = 1000000;
-                System.out.println(dinero + "€\n");
-                break;
-            default:
-                dinero = 0;
-                System.out.println(dinero + "€\n");
-                break;
-        }
-    }
-
-    public static void dineroSeguro(int nivel) {
-
-        int zonaSegura1 = 5;
-        int zonaSegura2 = 10;
-
-        if (nivel + 1 >= 5 && nivel + 1 < 10) {
-            dineroGanado(zonaSegura1);
-        } else if (nivel + 1 >= 10 && nivel + 1 < 12) {
-            dineroGanado(zonaSegura2);
-        } else {
-            dineroGanado(0);
-        }
-    }
-
     public static void generarBancoPreguntas(String[][] pregunta) {
 
         //Nivel 1

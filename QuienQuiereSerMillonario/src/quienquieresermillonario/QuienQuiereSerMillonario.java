@@ -22,48 +22,48 @@ public class QuienQuiereSerMillonario {
         Scanner in = new Scanner(System.in);
 
         // Vectores de las preguntas y respuestas del juego
-        String[] preguntas = new String[niveles];
-        String[] respuestasA = new String[niveles];
-        String[] respuestasB = new String[niveles];
-        String[] respuestasC = new String[niveles];
-        String[] respuestasD = new String[niveles];
+//        String[] preguntas = new String[niveles];
+//        String[] respuestasA = new String[niveles];
+//        String[] respuestasB = new String[niveles];
+//        String[] respuestasC = new String[niveles];
+//        String[] respuestasD = new String[niveles];
 
-        
         System.out.println("****Quién quiere ser millonario****");
         System.out.print("Introduce tu nombre: ");
         String nombre = in.nextLine();
         System.out.println("Bienvenid@ " + nombre);
         System.out.println("Pulsa intro para empezar");
         in.nextLine();
+
+        int opcion;
         
-        Preguntas.generarBancoPreguntas(Preguntas.preguntas);
-        Preguntas.generarPreguntasPartida(Preguntas.preguntas, Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
-        
-        System.out.println("¡¡Gracias por jugar!! Hasta la próxima :)");
-        //Preguntas.generarRespuestasPartida(Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
-        //Preguntas.comprobarRespuesta();
-        
-        /*for (int i = 0; i < niveles; i++) {
-            preguntas[i] = 
-        }*/
-        
+        do {
+            opcion = MenúJuego.menu();
+
+            switch (opcion) {
+                case 1:
+                    MenúJuego.reglas();
+                    break;
+                case 2:
+                    System.out.println("");
+                    Preguntas.generarBancoPreguntas(Preguntas.preguntas);
+                    Preguntas.generarPreguntasPartida(Preguntas.preguntas, Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
+                    System.out.println("¡¡Gracias por jugar!! Hasta la próxima :)");
+                    break;
+                case 3:
+                    break;
+            }
+        } while (opcion != 3);
+
         // Generar las preguntas
         //Preguntas.generarBancoPreguntas();
         //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
-        
         // MOSTRAR PREGUNTAS COMO PRUEBA, PARA VER SI FUNCIONA
         //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
-        
         // Recorrer todas los niveles 1 - 12. Para cada nivel ->
-        
-            // Preguntar al usuario
-            // Usuario responde
-            // Comprobar si es correcta (aumenta cantidad de dinero) o no (pierde)
-            
-            // Comprobar si ha ganado o no
-        
+        // Preguntar al usuario
+        // Usuario responde
+        // Comprobar si es correcta (aumenta cantidad de dinero) o no (pierde)
+        // Comprobar si ha ganado o no
     }
-    
-    
-    
 }
