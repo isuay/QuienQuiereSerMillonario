@@ -14,6 +14,7 @@ package quienquieresermillonario;
 
 public class Dinero {
 
+    // Definimos el dinero de cada nivel y lo vamos mostrando cada vez que gana o cuando pierde
     public static void dineroGanado(int nivel) {
 
         int dinero;
@@ -66,7 +67,8 @@ public class Dinero {
                 break;
             case 12:
                 dinero = 1000000;
-                System.out.println(dinero + "€\n");
+                System.out.println("\nEnhorabuena, !!has ganado el concurso¡¡\n"
+                        + "Premio final: " + dinero + "€\n");
                 break;
             default:
                 dinero = 0;
@@ -75,16 +77,23 @@ public class Dinero {
         }
     }
 
+    // Definimos el dinero que va a tener seguro si pasa las zonas seguras
     public static void dineroSeguro(int nivel) {
 
-        int zonaSegura1 = 5;
-        int zonaSegura2 = 10;
+        // Variables de las zonas seguras
+        int zonaSegura1 = 4;
+        int zonaSegura2 = 8;
 
-        if (nivel + 1 >= 4 && nivel + 1 < 8) {
+        // Si fallamos entre los niveles 5 y 8 aseguramos el premio del nivel 4
+        if (nivel > zonaSegura1 && nivel <= zonaSegura2) {
             dineroGanado(zonaSegura1);
-        } else if (nivel + 1 >= 8 && nivel + 1 < 12) {
+        } 
+        // Si fallamos entre los niveles 9 y 11 aseguramos el precio del nivel 8
+        else if (nivel > zonaSegura2 && nivel <= 12) {
             dineroGanado(zonaSegura2);
-        } else {
+        }
+        // Si fallamos en cualquier otro no aseguramos nada
+        else {
             dineroGanado(0);
         }
     }

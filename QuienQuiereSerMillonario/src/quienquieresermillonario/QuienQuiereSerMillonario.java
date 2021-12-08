@@ -13,6 +13,7 @@ import java.util.Scanner;
  * @version 1.0
  * @date 29 nov. 2021 21:25:39
  */
+
 public class QuienQuiereSerMillonario {
 
     public static int niveles = 12;
@@ -21,13 +22,7 @@ public class QuienQuiereSerMillonario {
 
         Scanner in = new Scanner(System.in);
 
-        // Vectores de las preguntas y respuestas del juego
-//        String[] preguntas = new String[niveles];
-//        String[] respuestasA = new String[niveles];
-//        String[] respuestasB = new String[niveles];
-//        String[] respuestasC = new String[niveles];
-//        String[] respuestasD = new String[niveles];
-
+        // Mostramos la introducción del juego
         System.out.println("****Quién quiere ser millonario****");
         System.out.print("Introduce tu nombre: ");
         String nombre = in.nextLine();
@@ -38,32 +33,22 @@ public class QuienQuiereSerMillonario {
         int opcion;
         
         do {
+            // Mostramos el menú y el usuario elije una opción
             opcion = MenúJuego.menu();
 
             switch (opcion) {
                 case 1:
+                    // Mostramos de que va el juego y los premios
                     MenúJuego.reglas();
                     break;
                 case 2:
+                    // Iniciamos el juego
                     System.out.println("");
                     Preguntas.generarBancoPreguntas(Preguntas.preguntas);
                     Preguntas.generarPreguntasPartida(Preguntas.preguntas, Preguntas.respuestaA, Preguntas.respuestaB, Preguntas.respuestaC, Preguntas.respuestaD);
-                    System.out.println("¡¡Gracias por jugar!! Hasta la próxima :)");
-                    break;
-                case 3:
+                    System.out.println("¡¡Gracias por jugar!! Hasta la próxima " + nombre + " :) \n");
                     break;
             }
-        } while (opcion != 3);
-
-        // Generar las preguntas
-        //Preguntas.generarBancoPreguntas();
-        //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
-        // MOSTRAR PREGUNTAS COMO PRUEBA, PARA VER SI FUNCIONA
-        //Preguntas.generarPreguntasPartida(preguntas, respuestasA, respuestasB, respuestasC, respuestasD);
-        // Recorrer todas los niveles 1 - 12. Para cada nivel ->
-        // Preguntar al usuario
-        // Usuario responde
-        // Comprobar si es correcta (aumenta cantidad de dinero) o no (pierde)
-        // Comprobar si ha ganado o no
+        } while (opcion != 2);
     }
 }
