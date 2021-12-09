@@ -31,7 +31,7 @@ public class Preguntas {
     public static void generarPreguntasPartida(String[][] pregunta, String[][] respuestaA, String[][] respuestaB, String[][] respuestaC, String[][] respuestaD) {
 
         //Creamos un número random para que no nos salga siempre la misma pregunta en cada nivel en cada partida
-        int rnd = (int) (0 + Math.random() * 5);
+        int rnd = (int)(0 + Math.random() * 5);
 
         // Inicializamos bucle con el que vamos a mostrar las preguntas y respuestas de cada nivel
         for (int i = 0; i < QuienQuiereSerMillonario.niveles; i++) {

@@ -15,7 +15,7 @@ package quienquieresermillonario;
 public class Comodín {
 
     // Preguntamos si va a usar el comodín o no
-    public static void usarComodin(boolean comodin, int nivel, int letra) {
+    public static void usarComodin(boolean comodin, int nivel, int numPregunta) {
 
         String resp;
 
@@ -25,41 +25,41 @@ public class Comodín {
                 resp = Preguntas.pedirRespuesta();
                 // Comprobamos si ha introducido el carácter correcto
                 if (resp.equalsIgnoreCase("s") == false && resp.equalsIgnoreCase("n") == false) {
-                    System.out.println("Valor introducido incorrecto.");
+                    System.out.println("Valor no válido.");
                     System.out.print("Vuelve a intentarlo: ");
                 }
             } while (resp.equalsIgnoreCase("s") == false && resp.equalsIgnoreCase("n") == false);
 
             // Si lo quiere usar ejecutamos la función de comodín
             if (resp.equalsIgnoreCase("s")) {
-                comodin(nivel, letra);
+                comodin(nivel, numPregunta);
                 Preguntas.comodin = true;
             }
         }
     }
 
     // En esta función mostramos simplemente dos opciones de la pregunta en la que una es la correcta
-    public static void comodin(int nivel, int letra) {
+    public static void comodin(int nivel, int numPregunta) {
 
         // Si la correcta es la a, mostramos la a y la c
-        if (Preguntas.respuestaA[nivel][letra].startsWith(Preguntas.correcta[nivel][letra]) == true) {
-            System.out.println(Preguntas.preguntas[nivel][letra]);
-            System.out.println(Preguntas.respuestaA[nivel][letra] + "\t" + Preguntas.respuestaC[nivel][letra]);
+        if (Preguntas.respuestaA[nivel][numPregunta].startsWith(Preguntas.correcta[nivel][numPregunta]) == true) {
+            System.out.println(Preguntas.preguntas[nivel][numPregunta]);
+            System.out.println(Preguntas.respuestaA[nivel][numPregunta] + "\t" + Preguntas.respuestaC[nivel][numPregunta]);
         }
         // Si la correcta es la b, mostramos la b y la d
-        else if (Preguntas.respuestaB[nivel][letra].startsWith(Preguntas.correcta[nivel][letra]) == true) {
-            System.out.println(Preguntas.preguntas[nivel][letra]);
-            System.out.println(Preguntas.respuestaB[nivel][letra] + "\t" + Preguntas.respuestaD[nivel][letra]);
+        else if (Preguntas.respuestaB[nivel][numPregunta].startsWith(Preguntas.correcta[nivel][numPregunta]) == true) {
+            System.out.println(Preguntas.preguntas[nivel][numPregunta]);
+            System.out.println(Preguntas.respuestaB[nivel][numPregunta] + "\t" + Preguntas.respuestaD[nivel][numPregunta]);
         } 
         // Si la correcta es la b, mostramos la b y la c
-        else if (Preguntas.respuestaC[nivel][letra].startsWith(Preguntas.correcta[nivel][letra]) == true) {
-            System.out.println(Preguntas.preguntas[nivel][letra]);
-            System.out.println(Preguntas.respuestaB[nivel][letra] + "\t" + Preguntas.respuestaC[nivel][letra]);
+        else if (Preguntas.respuestaC[nivel][numPregunta].startsWith(Preguntas.correcta[nivel][numPregunta]) == true) {
+            System.out.println(Preguntas.preguntas[nivel][numPregunta]);
+            System.out.println(Preguntas.respuestaB[nivel][numPregunta] + "\t" + Preguntas.respuestaC[nivel][numPregunta]);
         }
         // Si la correcta es la d, mostramos la c y la d
-        else if (Preguntas.respuestaD[nivel][letra].startsWith(Preguntas.correcta[nivel][letra]) == true) {
-            System.out.println(Preguntas.preguntas[nivel][letra]);
-            System.out.println(Preguntas.respuestaC[nivel][letra] + "\t" + Preguntas.respuestaD[nivel][letra]);
+        else if (Preguntas.respuestaD[nivel][numPregunta].startsWith(Preguntas.correcta[nivel][numPregunta]) == true) {
+            System.out.println(Preguntas.preguntas[nivel][numPregunta]);
+            System.out.println(Preguntas.respuestaC[nivel][numPregunta] + "\t" + Preguntas.respuestaD[nivel][numPregunta]);
         }
     }
 }

@@ -46,7 +46,7 @@ public class MenúJuego {
     // Mostramos las reglas del juego
     public static void reglas() {
         
-        System.out.println("\nEl juego consiste en responder coorectamente a 12 preguntas consecutivas, de creciente dificultad.\n"
+        System.out.println("\nEl juego consiste en responder correctamente a 12 preguntas consecutivas, de creciente dificultad.\n"
                 + "Cada vez que se contesta bien una pregunta se va acumulando una cantidad de dinero:\n"
                 + "Nivel 1: 100€\nNivel 2: 500€\nNivel 3: 1.000€\nNivel 4: 1.500€\nNivel 5: 2.500€\nNivel 6: 5.000€\n"
                 + "Nivel 7: 10.000€\nNivel 8: 20.000€\nNivel 9: 50.000€\nNivel 10: 100.000€\nNivel 11: 300.000€\nNivel 12: 1.000.000€\n"
